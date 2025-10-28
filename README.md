@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+## Gestion des Comptes Bancaires
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ce projet est une application web pour gérer des comptes bancaires. Il est composé d’un **backend Spring Boot** et d’un **frontend React**. L’application permet d’ajouter des comptes, de les lister et de visualiser leurs informations.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+##  Technologies utilisées
 
-### `npm start`
+- **Backend** : Java 17, Spring Boot, Spring Data JPA, H2 (ou autre base de données)
+- **Frontend** : React, Axios, Bootstrap
+- **Communication** : API REST (JSON et XML)
+- **Gestion CORS** : Autorisation de l’accès du frontend au backend
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##  Structure du projet frontend
 
-### `npm test`
+src/
+│
+├── Components/
+│ ├── CompteForm.js # Formulaire pour ajouter un compte
+│ └── CompteList.js # Liste des comptes existants
+│
+├── App.js # Composant principal
+├── config.js # Configuration de l'URL de l'API
+└── index.js # Point d’entrée React
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+yaml
+Copier le code
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##  Installation et exécution
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend (Spring Boot)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Cloner le projet backend ou ouvrir votre projet Spring Boot (Spring-RestController).
+2. Configurer la base de données dans `application.properties`.
+3. Lancer le serveur :
 
-### `npm run eject`
+```bash
+mvn spring-boot:run
+Le backend sera disponible sur : http://localhost:8080/banque.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Frontend (React)
+Installer les dépendances :
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+bash
+Copier le code
+npm install
+Lancer le frontend :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+bash
+Copier le code
+npm start
+Le frontend sera disponible sur : http://localhost:3000.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+ ## Fonctionnalités
+Ajouter un compte avec :
 
-## Learn More
+Solde
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Date de création
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Type : Courant ou Épargne
 
-### Code Splitting
+Lister tous les comptes existants
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+La liste se met à jour automatiquement après l’ajout d’un nouveau compte
 
-### Analyzing the Bundle Size
+Gestion des erreurs de saisie et de réseau
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Notes importantes
+CORS : Assurez-vous que le backend autorise le frontend (exemple : @CrossOrigin(origins = "http://localhost:3000") sur le contrôleur Spring Boot).
 
-### Making a Progressive Web App
+Format des données :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+solde : nombre (double)
 
-### Advanced Configuration
+dateCreation : format yyyy-MM-dd
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+type : enum COURANT ou EPARGNE
